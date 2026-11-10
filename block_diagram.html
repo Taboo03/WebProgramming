@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>DriveWave LOOP 웹 서비스 블록 & 링크 구조도</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+    body { background-color: #f1f5f9; padding: 30px; color: #1e293b; }
+    .container { max-width: 1100px; margin: 0 auto; background: #ffffff; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    h1 { font-size: 26px; text-align: center; margin-bottom: 8px; color: #0f172a; }
+    .subtitle { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 32px; }
+    
+    .page-section { border: 2px dashed #94a3b8; border-radius: 12px; padding: 24px 20px 18px; margin-bottom: 24px; background: #ffffff; position: relative; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+    .page-title { position: absolute; top: -14px; left: 24px; background: #3b82f6; color: white; padding: 4px 16px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+    .page-title.green { background: #10b981; }
+    .page-title.purple { background: #8b5cf6; }
+
+    .block { border: 2px solid #3b82f6; border-radius: 10px; background: white; padding: 14px 16px; margin-bottom: 12px; position: relative; }
+    .block:last-child { margin-bottom: 0; }
+    .block-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+    .block-title { font-size: 14px; font-weight: 700; color: #1e3a8a; }
+    .block-desc { font-size: 12.5px; color: #334155; line-height: 1.6; }
+    
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .css-badge { display: inline-block; background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .link-badge { display: inline-block; background: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+
+    .header-block { border-color: #6366f1; background: #f5f3ff; }
+    .weather-block { border-color: #0284c7; background: #e0f2fe; }
+    .music-block { border-color: #0284c7; background: #f0f9ff; }
+    .bgm-block { border-color: #ef4444; background: #fef2f2; }
+    .bgm-block .block-title { color: #b91c1c; }
+
+    .grid-weather-music { display: grid; grid-template-columns: 1fr 1.6fr; gap: 12px; }
+    .grid-planner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+
+    .course-card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #f8fafc; }
+    .course-tag { display: block; text-align: center; color: #fff; font-size: 11px; font-weight: bold; padding: 4px 6px; border-radius: 4px; margin-bottom: 8px; }
+    .course-name { font-size: 12px; font-weight: bold; color: #0f172a; margin-bottom: 4px; }
+    .course-path { font-size: 11px; color: #64748b; }
+
+    .flow-connector { text-align: center; margin: 12px 0; color: #2563eb; font-weight: bold; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🛞 DriveWave LOOP 웹 서비스 블록 & 링크 구조도</h1>
+  <p class="subtitle">목포대(청계캠퍼스) 무정차 순환 드라이브 & 장르별 음악 큐레이션 와이어프레임 설계 (블록 분할 • 인터랙션 • CSS 계획)</p>
+
+  <!-- PART 1 -->
+  <div class="page-section">
+    <div class="page-title">PART 1 : 상단 네비게이션 & 날씨·음악 큐레이션 (index.html)</div>
+
+    <div class="block header-block">
+      <div class="block-header">
+        <span class="block-title">블록 1 : 상단 헤더 (GNB - .header)</span>
+        <div class="badges">
+          <span class="css-badge">CSS: sticky, flex, backdrop-filter</span>
+          <span class="link-badge">👉 섹션 스무스 스크롤 & [+ 지도 직접 찍기] 모드 전환</span>
+        </div>
+      </div>
+      <div class="block-desc">로고 [🛞 DriveWave 목포대 청계캠퍼스] | 메뉴: [🎵 노래 장르 선택] [🧭 루프 경로] [🚗 목포대 근처 추천 코스] | 액션: [+ 지도 직접 찍기]</div>
+    </div>
+
+    <div class="grid-weather-music">
+      <div class="block weather-block" style="margin-bottom:0;">
+        <div class="block-header">
+          <span class="block-title" style="color:#0369a1;">블록 2-A : 청계면 실시간 날씨 카드</span>
+        </div>
+        <div class="block-desc">
+          📍 <strong>전남 무안군 청계면 (목포대)</strong> • 드라이브 지수: 최상 🌟<br>
+          🌙 현재 청계면 15°C • 맑음 (무정차 밤바리 최적 날씨)
+        </div>
+        <div class="badges" style="margin-top:8px;">
+          <span class="css-badge">CSS: linear-gradient, flex</span>
+        </div>
+      </div>
+
+      <div class="block music-block" style="margin-bottom:0;">
+        <div class="block-header">
+          <span class="block-title" style="color:#0369a1;">블록 2-B : 드라이브 음악 장르별 추천 큐레이션 (.genre-music-card)</span>
+        </div>
+        <div class="block-desc">
+          🎧 장르 선택: [🌆 시티팝&레트로] [🌙 힙합&R&B 밤바리] [☕ 칠&로파이] [🌊 바다 인디] [⚡ 신나는 팝]<br>
+          ▶️ 선택 플레이리스트 바: "심야 해안도로 드라이브 시티팝 믹스" | [웹에서 바로 듣기] [YouTube 열기 ↗]
+        </div>
+        <div class="badges" style="margin-top:8px;">
+          <span class="css-badge">CSS: grid (1fr 1.6fr), pill-tabs</span>
+          <span class="link-badge">👉 클릭 시 하단 고정 BGM 플레이어 즉시 동기화</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-connector">▼ 출발지 설정 및 순환(LOOP) 드라이브 경로 플래닝</div>
+
+  <!-- PART 2 -->
+  <div class="page-section">
+    <div class="page-title green">PART 2 : 목포대 무정차 한 바퀴 루프 플래너 & 내비 연동 (#loop-planner)</div>
+
+    <div class="grid-planner">
+      <div class="block" style="background:#f8fafc; margin-bottom:0;">
+        <div class="block-header">
+          <span class="block-title">블록 3 : 출발 원점 & 무정차 동선 타임라인 (좌측)</span>
+        </div>
+        <div class="block-desc">
+          🎯 <strong>출발/복귀 원점:</strong> [📍 목포대 도림캠퍼스 정문 ▾] [🎯 내 위치 GPS]<br>
+          • <strong>출발:</strong> 목포대학교 도림캠퍼스 정문 (원점)<br>
+          • <strong>경유 1~3:</strong> 청계오거리 ➔ 무안 톱머리 해변 ➔ 조금나루 회차<br>
+          • <strong>복귀:</strong> 다시 목포대학교 원점 도착 (약 34km • 42분 • 무정차 0회)
+          <div style="background:#eff6ff; border:1px solid #93c5fd; border-radius:6px; padding:8px 10px; margin-top:8px;">
+            <strong style="color:#1e40af; font-size:12px;">📲 외부 내비게이션 원클릭 경로 실행 (.nav-export-card)</strong><br>
+            <span style="color:#065f46; font-weight:bold;">[N 네이버 지도로 경로 열기]</span> &nbsp;|&nbsp; <span style="color:#92400e; font-weight:bold;">[K 카카오맵으로 경로 열기]</span>
+          </div>
+        </div>
+        <div class="badges" style="margin-top:8px;">
+          <span class="css-badge">CSS: flex-direction: column</span>
+          <span class="link-badge">👉 네이버/카카오 지도 앱·웹 딥링크</span>
+        </div>
+      </div>
+
+      <div class="block" style="background:#0f172a; border-color:#0284c7; color:#f8fafc; margin-bottom:0;">
+        <div class="block-header">
+          <span class="block-title" style="color:#38bdf8;">블록 4 : 목포·무안 인터랙티브 순환 루프 맵 (우측)</span>
+          <span class="css-badge">CSS: SVG, stroke-dasharray</span>
+        </div>
+        <div style="background:#1e293b; border-radius:8px; padding:18px; text-align:center; margin:8px 0;">
+          <div style="color:#6ee7b7; font-weight:bold; font-size:13px; margin-bottom:8px;">🟢 [출발/복귀: 목포대 원점]</div>
+          <div style="color:#38bdf8; font-size:12px; font-weight:bold;">───► 🔵 [경유 1: 청계오거리] ───► 🔵 [경유 2: 톱머리해변] ───► 🔵 [경유 3: 조금나루] ───► 🟢 [목포대 복귀]</div>
+          <div style="color:#94a3b8; font-size:11px; margin-top:10px;">🗺️ API 키 없이도 100% 작동하는 고화질 순환 루프(Loop) SVG 경로 그래픽</div>
+        </div>
+        <div class="badges">
+          <span class="link-badge">👉 지도 클릭 시 커스텀 경유지 동적 추가</span>
+          <span class="link-badge">👉 [실제 카카오맵 열기 ↗] 버튼 연동</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-connector">▲▼ 추천 코스 카드 클릭 시 상단 루프 플래너 & 지도 경로 즉시 변경</div>
+
+  <!-- PART 3 -->
+  <div class="page-section" style="margin-bottom:0;">
+    <div class="page-title purple">PART 3 : 목포대 근처 추천 코스 그리드 & 하단 고정 BGM 플레이어</div>
+
+    <div class="block">
+      <div class="block-header">
+        <span class="block-title">블록 5 : 목포대학교(청계면) 근처 추천 무정차 한 바퀴 코스 카드 그리드 (#courses)</span>
+        <div class="badges">
+          <span class="css-badge">CSS: grid (4열), hover transform</span>
+          <span class="link-badge">👉 카드 클릭 시 [블록 3·4] 경로 데이터 즉시 로드</span>
+        </div>
+      </div>
+      <div class="grid-4">
+        <div class="course-card">
+          <span class="course-tag" style="background:#0284c7;">#서해해안도로 🌊 (42분•34km)</span>
+          <div class="course-name">무안 톱머리해변-청계만 루프</div>
+          <div class="course-path">청계오거리 ➔ 톱머리 ➔ 조금나루</div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#312e81;">#해상교량야경 🌉 (52분•46km)</span>
+          <div class="course-name">평화광장-유달산-목포대교 루프</div>
+          <div class="course-path">평화광장 ➔ 유달산 ➔ 목포대교</div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#047857;">#바다위고속질주 🛣️ (75분•65km)</span>
+          <div class="course-name">신안 천사대교 & 압해도 루프</div>
+          <div class="course-path">압해대교 ➔ 천사대교 ➔ 오도선착장</div>
+        </div>
+        <div class="course-card">
+          <span class="course-tag" style="background:#b45309;">#무신호직선질주 🏎️ (48분•48km)</span>
+          <div class="course-name">영암호 방조제 & F1 서킷 루프</div>
+          <div class="course-path">남악 ➔ 영암 F1경주장 ➔ 영암방조제</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block bgm-block">
+      <div class="block-header">
+        <span class="block-title">블록 6 : 하단 고정 BGM 스트리밍 플레이어 & 유튜브 드로어 (footer.bgm-player)</span>
+        <span class="css-badge">CSS: position: fixed, bottom: 0, z-index</span>
+      </div>
+      <div class="block-desc">🎵 현재 선택 장르: 시티팝 | "심야 해안도로 드라이브 시티팝 & 감성 그루브 믹스" | [▶️ 음악 스트리밍 열기 (인앱 YouTube 드로어)] [YouTube 앱에서 듣기 ↗]</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

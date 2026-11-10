@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveWave LOOP - 목포대(청계) 무정차 드라이브 & 장르별 음악 추천</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- [블록 1] 상단 헤더: 깔끔하게 로고와 핵심 이동 링크만 유지 -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <span class="logo-icon">🛞</span>
+        <span class="logo-text">DriveWave <em class="campus-badge">목포대 청계캠퍼스</em></span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#music-section">🎵 노래 장르 선택</a>
+        <a href="#loop-planner" class="active">🧭 루프 경로</a>
+        <a href="#courses">🚗 목포대 근처 추천 코스</a>
+        <button type="button" class="btn-custom-mode" onclick="enableCustomLoopMode()">+ 지도 직접 찍기</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- [블록 2] 맨 위: 오직 [날씨]와 [노래 장르별 추천]만 집중 배치 -->
+    <section class="weather-music-section" id="music-section">
+      <!-- 1. 청계면 실시간 날씨 카드 -->
+      <div class="weather-compact-card">
+        <div class="weather-header">
+          <span class="region-pill">📍 전남 무안군 청계면 (목포대학교)</span>
+          <span class="drive-index">드라이브 지수: 최상 🌟</span>
+        </div>
+        <div class="weather-body">
+          <div class="weather-big-icon" id="weatherIcon">🌙</div>
+          <div class="weather-meta">
+            <h3 id="weatherTemp">현재 청계면 15°C • 맑음</h3>
+            <p id="weatherDesc">시야가 탁 트이고 해안 바람이 솔솔 불어 무정차 밤바리 떠나기 아주 좋은 날씨입니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 노래 장르별 추천 큐레이션 -->
+      <div class="genre-music-card">
+        <div class="genre-card-header">
+          <h4>🎧 드라이브 음악 장르 선택</h4>
+          <span class="sub-tip">원하는 음악 장르를 클릭하면 맞춤 플레이리스트가 세팅됩니다</span>
+        </div>
+
+        <div class="genre-pills">
+          <button class="genre-btn active" data-genre="citypop" onclick="selectGenre('citypop')">
+            <span>🌆</span> 시티팝 & 레트로
+          </button>
+          <button class="genre-btn" data-genre="rnb" onclick="selectGenre('rnb')">
+            <span>🌙</span> 힙합 & R&B 밤바리
+          </button>
+          <button class="genre-btn" data-genre="lofi" onclick="selectGenre('lofi')">
+            <span>☕</span> 칠(Chill) & 감성 로파이
+          </button>
+          <button class="genre-btn" data-genre="indie" onclick="selectGenre('indie')">
+            <span>🌊</span> 어쿠스틱 & 바다 인디
+          </button>
+          <button class="genre-btn" data-genre="pop" onclick="selectGenre('pop')">
+            <span>⚡</span> 신나는 팝 & 질주곡
+          </button>
+        </div>
+
+        <!-- 현재 선택된 장르의 추천 플레이리스트 정보 바 -->
+        <div class="active-music-bar">
+          <div class="active-music-info">
+            <span class="music-genre-badge" id="currentGenreBadge">🌆 시티팝 & 레트로</span>
+            <strong id="currentTrackTitle">심야 해안도로 드라이브 시티팝 & 감성 그루브 믹스</strong>
+          </div>
+          <div class="active-music-actions">
+            <button type="button" class="btn-music-play" onclick="toggleBgmPlay()">▶️ 웹에서 바로 듣기</button>
+            <a id="genreYoutubeLink" href="https://www.youtube.com/results?search_query=%EB%B0%A4%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C+%EC%8B%9C%ED%8B%B0%ED%8C%9D+%ED%94%8C%EB%A0%88%EC%9D%B4%EB%A6%AC%EC%8A%A4%ED%8A%B8" target="_blank" class="btn-yt-link">YouTube 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [블록 3] 목포대 출발 무정차 루프 플래너 & 네이버/카카오 지도 연동 -->
+    <section class="planner-section" id="loop-planner">
+      <div class="section-header-row">
+        <div>
+          <h2>🧭 목포대(청계) 기준 무정차 한 바퀴 경로 & 내비 연동</h2>
+          <span class="sub-desc">목포대를 출발해 시원한 해안·교량 코스를 돌고 <strong>다시 목포대로 돌아오는</strong> 순환 도로망입니다.</span>
+        </div>
+        <div class="mode-indicator" id="modeIndicator">현재: 목포대 추천 루프 코스</div>
+      </div>
+
+      <div class="planner-grid">
+        <!-- 좌측: 경로 제어 및 네이버/카카오맵 연동 -->
+        <div class="route-control-panel">
+          
+          <!-- 출발지 설정: 목포대 청계캠퍼스 중심 -->
+          <div class="panel-card">
+            <label class="step-label">출발 & 복귀 원점 (기본값: 목포대 청계캠퍼스)</label>
+            <div class="start-select-row">
+              <select id="startPointSelect" onchange="updateOriginFromPreset()">
+                <option value="34.9126,126.4385,목포대학교 도림캠퍼스(정문)">📍 목포대학교 도림캠퍼스 (청계면 정문)</option>
+                <option value="34.9180,126.4330,목포대 기숙사/후문">📍 목포대 기숙사 및 후문 원룸촌</option>
+                <option value="34.9130,126.4170,청계면사무소/청계오거리">📍 무안 청계오거리 (1번 국도)</option>
+                <option value="34.8152,126.4632,남악신도시(전남도청 앞)">📍 남악신도시 (전남도청 부근)</option>
+                <option value="34.7955,126.4312,목포 평화광장">📍 목포 하당 평화광장 해안</option>
+              </select>
+              <button type="button" class="btn-gps" onclick="useMyGPSLocation()" title="내 실시간 위치 사용">🎯 내 위치</button>
+            </div>
+          </div>
+
+          <!-- 타임라인 -->
+          <div class="panel-card">
+            <div class="route-title-bar">
+              <h3 id="currentCourseTitle">무안 톱머리해변-청계만 해안선 무정차 순환 루프</h3>
+              <span class="nonstop-badge">무정차 0회</span>
+            </div>
+            <p class="route-summary-stats" id="currentCourseStats">목포대 출발 ➔ 해안도로 ➔ 목포대 복귀 (약 34km • 42분)</p>
+
+            <ul class="loop-timeline" id="loopTimelineList">
+              <!-- JS 동적 렌더링 -->
+            </ul>
+
+            <div class="custom-help-box" id="customHelpBox" style="display: none;">
+              💡 <strong>지도 직접 찍기 모드:</strong> 우측 경로 지도 화면 위를 클릭해 지나가고 싶은 지점을 찍으면, 자동으로 <strong>목포대로 돌아오는 한 바퀴 루프</strong>가 이어집니다!
+              <button type="button" class="btn-reset-custom" onclick="clearCustomWaypoints()">경유지 초기화</button>
+            </div>
+          </div>
+
+          <!-- 네이버 지도 & 카카오맵 연동 -->
+          <div class="panel-card nav-export-card">
+            <label class="step-label">외부 내비게이션으로 경로 즉시 실행</label>
+            <p class="export-desc">스마트폰 내비 또는 지도 웹으로 <strong>[목포대 ➔ 경유지 ➔ 목포대 복귀]</strong> 경로를 바로 엽니다.</p>
+            
+            <div class="nav-btn-group">
+              <button type="button" class="btn-nav-export btn-naver" onclick="openNaverMapRoute()">
+                <span class="nav-logo">N</span>
+                <div class="nav-btn-text">
+                  <strong>네이버 지도로 경로 바로 열기</strong>
+                  <small>목포대 출발·경유·복귀 자동 세팅</small>
+                </div>
+              </button>
+
+              <button type="button" class="btn-nav-export btn-kakao" onclick="openKakaoMapRoute()">
+                <span class="nav-logo">K</span>
+                <div class="nav-btn-text">
+                  <strong>카카오맵으로 경로 바로 열기</strong>
+                  <small>목포/무안 드라이브 구간 길찾기</small>
+                </div>
+              </button>
+            </div>
+
+            <!-- 구간별 빠른 링크 -->
+            <div class="segment-links-box" id="segmentLinksBox"></div>
+          </div>
+
+        </div>
+
+        <!-- 우측: API 키 없이도 100% 선명하게 보이는 목포·무안 내비게이션 경로 그래픽 맵 -->
+        <div class="map-wrapper">
+          <div id="visualMapContainer" class="visual-map-container">
+            <!-- JS에서 선택된 코스에 맞춰 고화질 내비게이션 경로 그래픽(SVG)을 렌더링합니다 -->
+          </div>
+          <div class="map-overlay-controls">
+            <span class="overlay-chip" id="mapCourseChip">📍 무안·목포 순환 루프 미리보기</span>
+            <button type="button" class="overlay-btn" onclick="openKakaoMapRoute()">실제 카카오맵 열기 ↗</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [블록 4] 맨 밑: 목포대(청계면) 근처 실제 무정차 추천 코스 -->
+    <section class="courses-section" id="courses">
+      <div class="section-header-row">
+        <div>
+          <h2>🌊 목포대학교(청계면) 근처 추천 무정차 한 바퀴 코스</h2>
+          <span class="sub-desc">청계면 목포대 정문에서 출발해 안 내리고 기분 전환 후 학교로 싹 돌아오는 알짜 코스입니다.</span>
+        </div>
+      </div>
+
+      <div class="card-grid" id="courseCardGrid">
+        <!-- JS 동적 렌더링 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 하단 고정 음악 플레이어 드로어 -->
+  <footer class="bgm-player">
+    <div class="player-container">
+      <div class="song-info">
+        <div class="album-art" id="bgmIcon">🎵</div>
+        <div class="song-text">
+          <span class="bgm-match-tag" id="bgmGenreDisplay">현재 선택 장르: 시티팝</span>
+          <strong id="bgmFooterTitle">심야 해안도로 드라이브 시티팝 & 감성 그루브 믹스</strong>
+        </div>
+      </div>
+
+      <div class="player-controls">
+        <button class="btn-ctrl btn-play" id="bgmPlayBtn" onclick="toggleBgmPlay()">▶️ 음악 스트리밍 열기</button>
+        <a id="bgmFooterYtLink" href="https://www.youtube.com/results?search_query=%EB%B0%A4%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C+%EC%8B%9C%ED%8B%B0%ED%8C%9D+%ED%94%8C%EB%A0%88%EC%9D%B4%EB%A6%AC%EC%8A%A4%ED%8A%B8" target="_blank" class="btn-yt-open">YouTube 앱에서 듣기 ↗</a>
+      </div>
+    </div>
+
+    <div class="yt-drawer" id="ytDrawer" style="display: none;">
+      <div class="yt-drawer-header">
+        <span id="ytDrawerTitle">🎧 드라이브 스트리밍 재생 중</span>
+        <button type="button" onclick="toggleBgmPlay()">닫기 ✕</button>
+      </div>
+      <div id="ytIframeContainer"></div>
+    </div>
+  </footer>
+
+  <div id="toastMsg" class="toast-msg"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

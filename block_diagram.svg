@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 960" width="1040" height="960">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 14px; fill: #64748b; }
+      .section-badge { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .block-title { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 14px; font-weight: 700; fill: #1e3a8a; }
+      .block-text { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 12px; fill: #334155; }
+      .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 11px; font-weight: 600; }
+    </style>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- 전체 배경 -->
+  <rect width="1040" height="960" fill="#f8fafc" rx="16"/>
+
+  <!-- 상단 타이틀 -->
+  <text x="520" y="44" text-anchor="middle" class="title">🛞 DriveWave LOOP 웹 서비스 블록 &amp; 링크 구조도</text>
+  <text x="520" y="68" text-anchor="middle" class="subtitle">목포대(청계캠퍼스) 무정차 순환 드라이브 &amp; 장르별 음악 큐레이션 와이어프레임 설계 (블록 분할 • 인터랙션 • CSS 계획)</text>
+
+  <!-- ================= SECTION 1 : 상단 진입 & 큐레이션 영역 ================= -->
+  <g transform="translate(40, 95)">
+    <!-- 외곽 컨테이너 -->
+    <rect width="960" height="235" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="6,6" stroke-width="2" rx="12" filter="url(#shadow)"/>
+    <rect x="25" y="-13" width="310" height="26" fill="#3b82f6" rx="13"/>
+    <text x="180" y="4" text-anchor="middle" class="section-badge">PART 1 : 상단 네비게이션 &amp; 날씨·음악 큐레이션 (index.html)</text>
+
+    <!-- 블록 1: 상단 헤더 (GNB) -->
+    <g transform="translate(25, 25)">
+      <rect width="910" height="58" fill="#f5f3ff" stroke="#6366f1" stroke-width="2" rx="8"/>
+      <text x="16" y="24" class="block-title">블록 1 : 상단 헤더 (GNB - .header)</text>
+      <text x="16" y="44" class="block-text">로고 [🛞 DriveWave 목포대 청계캠퍼스]  |  메뉴: [🎵 노래 장르 선택] [🧭 루프 경로] [🚗 추천 코스]  |  버튼: [+ 지도 직접 찍기]</text>
+      <rect x="525" y="10" width="165" height="22" fill="#fef3c7" rx="4"/>
+      <text x="607" y="25" text-anchor="middle" class="badge-text" fill="#92400e">CSS: sticky, flex, blur</text>
+      <rect x="698" y="10" width="198" height="22" fill="#ecfdf5" rx="4"/>
+      <text x="797" y="25" text-anchor="middle" class="badge-text" fill="#065f46">👉 섹션 스크롤 &amp; 커스텀 모드 활성</text>
+    </g>
+
+    <!-- 블록 2: 실시간 날씨 & 음악 장르 선택 (2열 그리드) -->
+    <g transform="translate(25, 96)">
+      <!-- 좌측: 청계면 실시간 날씨 카드 -->
+      <rect width="340" height="118" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" rx="8"/>
+      <text x="15" y="24" class="block-title" fill="#0369a1">블록 2-A : 청계면 실시간 날씨 카드</text>
+      <text x="15" y="48" class="block-text" font-weight="bold">📍 전남 무안군 청계면 (목포대) • 드라이브 지수: 최상 🌟</text>
+      <text x="15" y="70" class="block-text">🌙 현재 청계면 15°C • 맑음 (무정차 밤바리 최적 날씨)</text>
+      <rect x="15" y="84" width="185" height="22" fill="#fef3c7" rx="4"/>
+      <text x="107" y="99" text-anchor="middle" class="badge-text" fill="#92400e">CSS: linear-gradient, flex</text>
+
+      <!-- 우측: 드라이브 음악 장르 큐레이션 -->
+      <g transform="translate(355, 0)">
+        <rect width="555" height="118" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" rx="8"/>
+        <text x="15" y="24" class="block-title" fill="#0369a1">블록 2-B : 드라이브 음악 장르별 추천 큐레이션 (.genre-music-card)</text>
+        <text x="15" y="48" class="block-text">장르 버튼: [🌆 시티팝&amp;레트로] [🌙 힙합&amp;R&amp;B 밤바리] [☕ 칠&amp;로파이] [🌊 바다 인디] [⚡ 신나는 팝]</text>
+        <text x="15" y="70" class="block-text">선택 플레이리스트 바: "심야 해안도로 드라이브 시티팝 믹스" | [▶️ 웹에서 바로 듣기] [YouTube 열기 ↗]</text>
+        <rect x="15" y="84" width="195" height="22" fill="#fef3c7" rx="4"/>
+        <text x="112" y="99" text-anchor="middle" class="badge-text" fill="#92400e">CSS: grid (1fr 1.6fr), pill-tabs</text>
+        <rect x="220" y="84" width="245" height="22" fill="#ecfdf5" rx="4"/>
+        <text x="342" y="99" text-anchor="middle" class="badge-text" fill="#065f46">👉 클릭 시 하단 BGM 플레이어 즉시 연동</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 연결 화살표 1 -->
+  <g transform="translate(520, 352)">
+    <text x="0" y="0" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">▼ 출발지 설정 및 순환(LOOP) 드라이브 경로 플래닝</text>
+  </g>
+
+  <!-- ================= SECTION 2 : 메인 무정차 루프 플래너 & 지도 ================= -->
+  <g transform="translate(40, 370)">
+    <rect width="960" height="285" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="6,6" stroke-width="2" rx="12" filter="url(#shadow)"/>
+    <rect x="25" y="-13" width="330" height="26" fill="#10b981" rx="13"/>
+    <text x="190" y="4" text-anchor="middle" class="section-badge">PART 2 : 목포대 무정차 한 바퀴 루프 플래너 &amp; 내비 연동 (#loop-planner)</text>
+
+    <!-- 블록 3: 좌측 경로 제어 & 타임라인 & 내비 연동 -->
+    <g transform="translate(25, 25)">
+      <rect width="415" height="240" fill="#f8fafc" stroke="#3b82f6" stroke-width="2" rx="8"/>
+      <text x="15" y="24" class="block-title">블록 3 : 출발 원점 &amp; 무정차 동선 타임라인 (좌측)</text>
+      <text x="15" y="48" class="block-text" font-weight="bold">🎯 출발/복귀 원점: [📍 목포대 도림캠퍼스 정문 ▾] [내 위치 GPS]</text>
+      <text x="15" y="72" class="block-text">• 출발 : 목포대학교 도림캠퍼스 정문 (원점)</text>
+      <text x="15" y="92" class="block-text">• 경유 1~3 : 청계오거리 ➔ 무안 톱머리 해변 ➔ 조금나루 회차</text>
+      <text x="15" y="112" class="block-text">• 복귀 : 다시 목포대학교 원점 도착 (약 34km • 42분 • 무정차 0회)</text>
+      
+      <!-- 네이버/카카오 내비 연동 서브 박스 -->
+      <rect x="15" y="126" width="385" height="68" fill="#eff6ff" stroke="#93c5fd" rx="6"/>
+      <text x="25" y="146" font-size="12" font-weight="bold" fill="#1e40af">📲 외부 내비게이션 원클릭 경로 실행 (.nav-export-card)</text>
+      <text x="25" y="166" font-size="11" fill="#065f46" font-weight="bold">[N 네이버 지도로 경로 바로 열기]</text>
+      <text x="215" y="166" font-size="11" fill="#92400e" font-weight="bold">[K 카카오맵으로 경로 바로 열기]</text>
+      <text x="25" y="184" font-size="11" fill="#475569">+ 구간별 빠른 길찾기 칩 (1구간, 2구간, 학교 복귀)</text>
+
+      <rect x="15" y="205" width="175" height="22" fill="#fef3c7" rx="4"/>
+      <text x="102" y="220" text-anchor="middle" class="badge-text" fill="#92400e">CSS: flex-column, timeline</text>
+      <rect x="198" y="205" width="202" height="22" fill="#ecfdf5" rx="4"/>
+      <text x="299" y="220" text-anchor="middle" class="badge-text" fill="#065f46">👉 네이버/카카오 지도 앱·웹 딥링크</text>
+    </g>
+
+    <!-- 블록 4: 우측 순환 루프 그래픽 맵 -->
+    <g transform="translate(455, 25)">
+      <rect width="480" height="240" fill="#0f172a" stroke="#0284c7" stroke-width="2" rx="8"/>
+      <text x="16" y="25" class="block-title" fill="#38bdf8">블록 4 : 목포·무안 인터랙티브 순환 루프 맵 (우측)</text>
+      <rect x="315" y="9" width="150" height="22" fill="#fef3c7" rx="4"/>
+      <text x="390" y="24" text-anchor="middle" class="badge-text" fill="#92400e">CSS: SVG, dash-animation</text>
+
+      <!-- 바다/육지 지형 느낌 배경 장식 -->
+      <rect x="16" y="38" width="448" height="155" fill="#1e293b" rx="6"/>
+      
+      <!-- 순환 루프 경로 시각화 (폐곡선 루프) -->
+      <path d="M 330 130 C 310 65, 190 55, 130 95 C 90 125, 180 175, 330 130 Z" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="3.5" stroke-dasharray="6,4"/>
+      
+      <!-- 출발/복귀 원점 마커 (목포대) -->
+      <circle cx="330" cy="130" r="14" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+      <text x="330" y="134" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">출발</text>
+      <text x="378" y="134" font-size="11" font-weight="bold" fill="#6ee7b7">목포대(원점)</text>
+
+      <!-- 경유지 1 -->
+      <circle cx="245" cy="72" r="11" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+      <text x="245" y="76" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">1</text>
+
+      <!-- 경유지 2 -->
+      <circle cx="130" cy="95" r="11" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+      <text x="130" y="99" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">2</text>
+
+      <!-- 경유지 3 -->
+      <circle cx="195" cy="148" r="11" fill="#3b82f6" stroke="#ffffff" stroke-width="1.5"/>
+      <text x="195" y="152" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">3</text>
+
+      <text x="240" y="182" text-anchor="middle" font-size="11" fill="#94a3b8">🗺️ 출발지 ➔ 경유지(1·2·3) ➔ 목포대 자동 복귀 폐곡선(Loop) 렌더링</text>
+
+      <rect x="16" y="203" width="240" height="24" fill="#ecfdf5" rx="4"/>
+      <text x="136" y="219" text-anchor="middle" class="badge-text" fill="#065f46">👉 지도 클릭 시 커스텀 경유지 추가</text>
+      <rect x="266" y="203" width="198" height="24" fill="#eff6ff" rx="4"/>
+      <text x="365" y="219" text-anchor="middle" class="badge-text" fill="#1d4ed8">👉 [실제 카카오맵 열기 ↗] 연동</text>
+    </g>
+  </g>
+
+  <!-- 연결 화살표 2 -->
+  <g transform="translate(520, 677)">
+    <text x="0" y="0" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">▲▼ 추천 코스 카드 클릭 시 상단 루프 플래너 &amp; 지도 경로 즉시 변경</text>
+  </g>
+
+  <!-- ================= SECTION 3 : 추천 코스 그리드 & 하단 고정 BGM ================= -->
+  <g transform="translate(40, 695)">
+    <rect width="960" height="240" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="6,6" stroke-width="2" rx="12" filter="url(#shadow)"/>
+    <rect x="25" y="-13" width="335" height="26" fill="#8b5cf6" rx="13"/>
+    <text x="192" y="4" text-anchor="middle" class="section-badge">PART 3 : 목포대 근처 추천 코스 그리드 &amp; 하단 BGM 플레이어</text>
+
+    <!-- 블록 5: 목포대 근처 추천 무정차 코스 4선 -->
+    <g transform="translate(25, 22)">
+      <rect width="910" height="140" fill="#ffffff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+      <text x="15" y="24" class="block-title">블록 5 : 목포대학교(청계면) 근처 추천 무정차 한 바퀴 코스 카드 그리드 (#courses)</text>
+      <rect x="465" y="8" width="195" height="22" fill="#fef3c7" rx="4"/>
+      <text x="562" y="23" text-anchor="middle" class="badge-text" fill="#92400e">CSS: grid (4열), hover-lift</text>
+      <rect x="668" y="8" width="228" height="22" fill="#ecfdf5" rx="4"/>
+      <text x="782" y="23" text-anchor="middle" class="badge-text" fill="#065f46">👉 카드 클릭 시 [블록 3·4] 경로 로드</text>
+
+      <!-- 코스 카드 1 -->
+      <g transform="translate(15, 38)">
+        <rect width="212" height="88" fill="#f8fafc" stroke="#cbd5e1" rx="6"/>
+        <rect x="8" y="8" width="196" height="24" fill="#0284c7" rx="4"/>
+        <text x="106" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">#서해해안도로 🌊 (42분 • 34km)</text>
+        <text x="12" y="52" font-size="12" font-weight="bold" fill="#0f172a">무안 톱머리해변-청계만 루프</text>
+        <text x="12" y="72" font-size="11" fill="#64748b">청계오거리 ➔ 톱머리 ➔ 조금나루</text>
+      </g>
+
+      <!-- 코스 카드 2 -->
+      <g transform="translate(237, 38)">
+        <rect width="212" height="88" fill="#f8fafc" stroke="#cbd5e1" rx="6"/>
+        <rect x="8" y="8" width="196" height="24" fill="#312e81" rx="4"/>
+        <text x="106" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">#해상교량야경 🌉 (52분 • 46km)</text>
+        <text x="12" y="52" font-size="12" font-weight="bold" fill="#0f172a">평화광장-유달산-목포대교 루프</text>
+        <text x="12" y="72" font-size="11" fill="#64748b">평화광장 ➔ 유달산 ➔ 목포대교</text>
+      </g>
+
+      <!-- 코스 카드 3 -->
+      <g transform="translate(459, 38)">
+        <rect width="212" height="88" fill="#f8fafc" stroke="#cbd5e1" rx="6"/>
+        <rect x="8" y="8" width="196" height="24" fill="#047857" rx="4"/>
+        <text x="106" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">#바다위고속질주 🛣️ (75분 • 65km)</text>
+        <text x="12" y="52" font-size="12" font-weight="bold" fill="#0f172a">신안 천사대교 &amp; 압해도 루프</text>
+        <text x="12" y="72" font-size="11" fill="#64748b">압해대교 ➔ 천사대교 ➔ 오도선착장</text>
+      </g>
+
+      <!-- 코스 카드 4 -->
+      <g transform="translate(681, 38)">
+        <rect width="214" height="88" fill="#f8fafc" stroke="#cbd5e1" rx="6"/>
+        <rect x="8" y="8" width="198" height="24" fill="#b45309" rx="4"/>
+        <text x="107" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">#무신호직선질주 🏎️ (48분 • 48km)</text>
+        <text x="12" y="52" font-size="12" font-weight="bold" fill="#0f172a">영암호 방조제 &amp; F1 서킷 루프</text>
+        <text x="12" y="72" font-size="11" fill="#64748b">남악 ➔ 영암 F1경주장 ➔ 영암방조제</text>
+      </g>
+    </g>
+
+    <!-- 블록 6: 하단 고정 BGM 플레이어 드로어 -->
+    <g transform="translate(25, 174)">
+      <rect width="910" height="52" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+      <text x="15" y="22" class="block-title" fill="#b91c1c">블록 6 : 하단 고정 BGM 스트리밍 플레이어 &amp; 유튜브 드로어 (footer.bgm-player)</text>
+      <text x="15" y="41" class="block-text">🎵 현재 선택 장르: 시티팝 | "심야 해안도로 드라이브 시티팝 &amp; 감성 그루브 믹스" | [▶️ 음악 스트리밍 열기] [YouTube 앱에서 듣기 ↗]</text>
+      <rect x="695" y="14" width="200" height="24" fill="#fef3c7" rx="4"/>
+      <text x="795" y="30" text-anchor="middle" class="badge-text" fill="#92400e">CSS: position: fixed, bottom: 0</text>
+    </g>
+  </g>
+</svg>

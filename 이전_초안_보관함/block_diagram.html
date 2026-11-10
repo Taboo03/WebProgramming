@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>DriveWave 웹 서비스 블록 & 링크 구조도</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+    body { background-color: #f1f5f9; padding: 30px; color: #1e293b; }
+    .container { max-width: 1200px; margin: 0 auto; background: #ffffff; padding: 35px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    h1 { font-size: 26px; text-align: center; margin-bottom: 8px; color: #0f172a; }
+    .subtitle { text-align: center; color: #64748b; font-size: 15px; margin-bottom: 30px; }
+    
+    .page-section { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px; margin-bottom: 35px; background: #f8fafc; position: relative; }
+    .page-title { position: absolute; top: -14px; left: 24px; background: #3b82f6; color: white; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; letter-spacing: 0.5px; }
+
+    /* 블록 공통 스타일 */
+    .block { border: 2px solid #3b82f6; border-radius: 10px; background: white; padding: 14px; margin-bottom: 14px; position: relative; transition: all 0.2s; }
+    .block-tag { display: inline-block; background: #eff6ff; color: #1d4ed8; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 6px; margin-bottom: 6px; }
+    .block-desc { font-size: 13px; color: #475569; line-height: 1.5; }
+    .css-badge { display: inline-block; background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; margin-top: 6px; }
+    .link-badge { display: inline-block; background: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; margin-top: 6px; margin-left: 5px; }
+
+    /* 헤더 블록 */
+    .header-block { display: flex; justify-content: space-between; align-items: center; border-color: #6366f1; background: #f5f3ff; }
+    
+    /* 배너 블록 */
+    .banner-block { background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%); border-color: #0284c7; }
+    
+    /* 2열 레이아웃 */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    .card-item { border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; background: #ffffff; text-align: center; }
+    .card-img-placeholder { height: 90px; background: #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 12px; margin-bottom: 8px; }
+
+    /* 지도 영역 */
+    .map-placeholder { height: 220px; background: #e0f2fe; border: 2px dashed #38bdf8; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #0369a1; font-weight: bold; gap: 8px; }
+
+    /* 이동 화살표 표시선 */
+    .flow-connector { text-align: center; margin: 15px 0; color: #3b82f6; font-weight: bold; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🗺️ DriveWave 웹 서비스 블록 & 링크 구조도</h1>
+  <p class="subtitle">웹프로그래밍 과제 제안서 와이어프레임 설계 (화면 분할 / 이동 링크 / CSS 계획)</p>
+
+  <!-- 1. 메인 페이지 -->
+  <div class="page-section">
+    <div class="page-title">PAGE 1 : 메인 페이지 (index.html)</div>
+
+    <!-- 헤더 -->
+    <div class="block header-block">
+      <div>
+        <span class="block-tag">블록 1: 상단 헤더 (GNB)</span>
+        <div class="block-desc">로고 [DriveWave] | 메뉴 (코스탐색, 코스작성) | 검색바</div>
+      </div>
+      <div>
+        <span class="css-badge">CSS: position: sticky; flex</span>
+        <span class="link-badge">👉 클릭 시 [로그인/회원가입 페이지]로 이동</span>
+      </div>
+    </div>
+
+    <!-- 날씨 & 테마 배너 -->
+    <div class="block banner-block">
+      <span class="block-tag">블록 2: 실시간 날씨 & 테마 필터 배너</span>
+      <div class="block-desc">
+        ⛅ OpenWeather API 연동: "현재 서울 18℃ 맑음! 드라이브하기 좋은 날씨"<br>
+        태그 버튼: [#야경드라이브] [#오션뷰] [#비오는날] [#단풍로드]
+      </div>
+      <span class="css-badge">CSS: linear-gradient, border-radius: 20px, hover transition</span>
+    </div>
+
+    <!-- 추천 코스 그리드 -->
+    <div class="block">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+        <span class="block-tag">블록 3: 테마별 추천 드라이브 코스 그리드</span>
+        <span class="link-badge">👉 코스 카드 클릭 시 [코스 상세 & 지도 페이지]로 이동</span>
+      </div>
+      <div class="grid-3">
+        <div class="card-item">
+          <div class="card-img-placeholder">🚗 코스 썸네일 이미지</div>
+          <strong style="font-size:13px;">북악스카이웨이 야경 코스</strong>
+          <p style="font-size:11px; color:#64748b;">소요시간 2시간 • ♥ 128</p>
+        </div>
+        <div class="card-item">
+          <div class="card-img-placeholder">🌊 코스 썸네일 이미지</div>
+          <strong style="font-size:13px;">남양주 북한강 오션뷰 카페</strong>
+          <p style="font-size:11px; color:#64748b;">소요시간 3시간 • ♥ 94</p>
+        </div>
+        <div class="card-item">
+          <div class="card-img-placeholder">🍂 코스 썸네일 이미지</div>
+          <strong style="font-size:13px;">가평 청평호 단풍 드라이브</strong>
+          <p style="font-size:11px; color:#64748b;">소요시간 4시간 • ♥ 210</p>
+        </div>
+      </div>
+      <span class="css-badge">CSS: display: grid; repeat(3, 1fr); hover: translateY(-5px)</span>
+    </div>
+
+    <!-- 음악 플레이어 -->
+    <div class="block" style="background:#fef2f2; border-color:#ef4444; margin-bottom: 0;">
+      <span class="block-tag" style="background:#fee2e2; color:#b91c1c;">블록 4: 감성 BGM 플레이어 (유튜브 API)</span>
+      <div class="block-desc">🎵 "늦은 밤 감성 드라이브 로파이 플레이리스트" (유튜브 영상 임베드 & 미니 재생바)</div>
+      <span class="css-badge">CSS: position: fixed; bottom: 0; box-shadow</span>
+    </div>
+  </div>
+
+  <div class="flow-connector">⬇️ 코스 카드 클릭 시 이동</div>
+
+  <!-- 2. 코스 상세 및 지도 페이지 -->
+  <div class="page-section">
+    <div class="page-title">PAGE 2 : 코스 상세 & 지도 페이지 (detail.html)</div>
+
+    <div class="grid-2">
+      <!-- 좌측: 동선 타임라인 -->
+      <div class="block" style="margin-bottom:0;">
+        <span class="block-tag">블록 5: 1~3차 동선 타임라인 (좌측)</span>
+        <div style="font-size:13px; line-height:2; margin-top:8px;">
+          📍 <strong>1차:</strong> 성북동 뷰맛집 카페 (출발)<br>
+          📍 <strong>2차:</strong> 팔각정 야경 조망 (메인 스팟)<br>
+          📍 <strong>3차:</strong> 부암동 심야 식당 (도착)
+        </div>
+        <p style="font-size:12px; color:#64748b; margin-top:10px;">• 각 장소 클릭 시 우측 지도의 마커로 포커스 이동</p>
+        <span class="css-badge">CSS: flex-direction: column; border-left: 3px solid #3b82f6</span>
+      </div>
+
+      <!-- 우측: 카카오 지도 -->
+      <div class="block" style="margin-bottom:0;">
+        <span class="block-tag">블록 6: 카카오 지도 연동 영역 (우측)</span>
+        <div class="map-placeholder">
+          🗺️ Kakao Maps API 렌더링 화면
+          <span style="font-size:12px; font-weight:normal; color:#0284c7;">[마커 1] ─── (경로 선: Polyline) ───► [마커 2] ───► [마커 3]</span>
+        </div>
+        <span class="css-badge">CSS: width: 100%; height: 220px; border-radius: 8px</span>
+      </div>
+    </div>
+
+    <!-- 댓글 및 찜하기 -->
+    <div class="block" style="margin-top:14px; margin-bottom:0;">
+      <span class="block-tag">블록 7: 후기 댓글 & 찜하기 (CRUD)</span>
+      <div class="block-desc">❤️ 찜하기 버튼 | 💬 다녀온 사용자들의 한 줄 후기 및 별점 작성/삭제 폼</div>
+      <span class="css-badge">CSS: @keyframes heart-pulse, input/button 스타일링</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

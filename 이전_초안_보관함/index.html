@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveWave - 날씨 & 테마 맞춤형 드라이브 코스 플래너</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- [블록 1] 상단 헤더 (GNB) -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon">🚗</span>
+        <span class="logo-text">DriveWave</span>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="어디로 떠나고 싶으세요? (예: 남양주, 북악스카이웨이)">
+        <button type="button">검색</button>
+      </div>
+      <nav class="nav-links">
+        <a href="#courses" class="active">코스 탐색</a>
+        <a href="#create" class="btn-create">+ 코스 만들기</a>
+        <a href="#login" class="btn-login">로그인</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- [블록 2] 실시간 날씨 & 테마 필터 배너 -->
+    <section class="banner-section">
+      <div class="weather-widget">
+        <div class="weather-icon">⛅</div>
+        <div class="weather-info">
+          <h3>현재 서울 19°C 맑음</h3>
+          <p>노을 지는 하늘 아래, 가볍게 드라이브 떠나기 딱 좋은 날씨예요!</p>
+        </div>
+      </div>
+      <div class="theme-tags">
+        <button class="tag active">전체</button>
+        <button class="tag">#야경드라이브 🌙</button>
+        <button class="tag">#오션뷰카페 🌊</button>
+        <button class="tag">#단풍로드 🍂</button>
+        <button class="tag">#비오는날운치있는 🌧️</button>
+        <button class="tag">#늦은밤심야코스 ✨</button>
+      </div>
+    </section>
+
+    <!-- [블록 3] 추천 드라이브 코스 카드 그리드 -->
+    <section class="courses-section" id="courses">
+      <div class="section-header">
+        <h2>🔥 지금 인기 있는 추천 코스</h2>
+        <span class="sub-desc">실제 러너와 드라이버들이 검증한 코스예요</span>
+      </div>
+
+      <div class="card-grid">
+        <!-- 코스 카드 1 -->
+        <article class="course-card" onclick="openDetailModal('북악스카이웨이 야경 드라이브')">
+          <div class="card-thumb thumb-night">
+            <span class="badge">야경 명소</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">북악스카이웨이 심야 힐링 코스</h3>
+            <p class="card-route">성북동 카페 ➔ 팔각정 전망대 ➔ 부암동 심야식당</p>
+            <div class="card-meta">
+              <span>⏱️ 약 2시간 30분</span>
+              <span class="like-btn" onclick="toggleLike(event, this)">❤️ 142</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 코스 카드 2 -->
+        <article class="course-card" onclick="openDetailModal('남양주 북한강 물멍 드라이브')">
+          <div class="card-thumb thumb-river">
+            <span class="badge">오션/리버뷰</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">남양주 북한강 물멍 & 베이커리</h3>
+            <p class="card-route">물의정원 산책로 ➔ 강변 뷰 카페 ➔ 장어 맛집</p>
+            <div class="card-meta">
+              <span>⏱️ 약 3시간 10분</span>
+              <span class="like-btn" onclick="toggleLike(event, this)">❤️ 98</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 코스 카드 3 -->
+        <article class="course-card" onclick="openDetailModal('청평호 단풍 & 와인딩 코스')">
+          <div class="card-thumb thumb-autumn">
+            <span class="badge">가을 단풍</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">가평 청평호 단풍 와인딩 로드</h3>
+            <p class="card-route">호수 드라이브길 ➔ 쁘띠프랑스 언덕 ➔ 닭갈비 골목</p>
+            <div class="card-meta">
+              <span>⏱️ 약 4시간</span>
+              <span class="like-btn" onclick="toggleLike(event, this)">❤️ 215</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- [블록 5 & 6] 코스 상세 & 지도 미리보기 영역 (클릭 시 나타나는 상세 뷰) -->
+    <section class="detail-preview-section">
+      <div class="section-header">
+        <h2>🗺️ 코스 상세 동선 & 인터랙티브 지도 (미리보기)</h2>
+        <span class="sub-desc">지도를 클릭하고 확대/축소해 보세요</span>
+      </div>
+
+      <div class="detail-container">
+        <!-- 좌측: 타임라인 블록 -->
+        <div class="timeline-block">
+          <h3>📍 1~3차 상세 동선</h3>
+          <ul class="timeline-list">
+            <li>
+              <div class="timeline-dot">1</div>
+              <div class="timeline-info">
+                <strong>성북동 뷰맛집 카페 (출발)</strong>
+                <p>서울 성북구 성북동 • 통창으로 성곽길 뷰 감상</p>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-dot">2</div>
+              <div class="timeline-info">
+                <strong>북악 팔각정 전망대 (메인 스팟)</strong>
+                <p>서울 종로구 평창동 • 서울 도심 360도 야경 감상</p>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-dot">3</div>
+              <div class="timeline-info">
+                <strong>부암동 심야 식당 (도착)</strong>
+                <p>서울 종로구 부암동 • 드라이브 마무리 야식</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="comment-box">
+            <h4>💬 방문자 한 줄 후기 (CRUD)</h4>
+            <div class="comment-item">"주말 밤 11시에 가니까 차도 안 막히고 야경 대박이에요!" - 김*현</div>
+            <div class="comment-form">
+              <input type="text" placeholder="나만의 드라이브 꿀팁을 남겨주세요">
+              <button type="button">등록</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 카카오 지도 영역 블록 -->
+        <div class="map-block">
+          <div class="map-placeholder">
+            <div class="map-badge">🗺️ Kakao Maps 연동 구역</div>
+            <div class="route-line-demo">
+              <div class="pin pin-1">1</div>
+              <div class="line"></div>
+              <div class="pin pin-2">2</div>
+              <div class="line"></div>
+              <div class="pin pin-3">3</div>
+            </div>
+            <p class="map-caption">실제 개발 시 카카오 지도 위에 Polyline(경로선)과 마커가 렌더링됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- [블록 4] 감성 드라이브 BGM 플레이어 (화면 하단 고정) -->
+  <footer class="bgm-player">
+    <div class="player-container">
+      <div class="song-info">
+        <span class="album-art">🎵</span>
+        <div>
+          <strong>늦은 밤 드라이브를 위한 감성 로파이 팝</strong>
+          <span class="author">YouTube Music Playlist 큐레이션</span>
+        </div>
+      </div>
+      <div class="player-controls">
+        <button class="btn-ctrl">⏮️</button>
+        <button class="btn-ctrl btn-play">▶️ 재생</button>
+        <button class="btn-ctrl">⏭️</button>
+      </div>
+      <div class="player-extra">
+        <span>🔊 볼륨 70%</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 좋아요 하트 토글 인터랙션
+    function toggleLike(e, btn) {
+      e.stopPropagation();
+      let currentLikes = parseInt(btn.innerText.replace(/[^0-9]/g, ''));
+      if (btn.classList.toggle('liked')) {
+        btn.innerText = '💖 ' + (currentLikes + 1);
+      } else {
+        btn.innerText = '❤️ ' + (currentLikes - 1);
+      }
+    }
+
+    // 태그 버튼 활성화
+    const tags = document.querySelectorAll('.theme-tags .tag');
+    tags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        tags.forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+      });
+    });
+
+    function openDetailModal(title) {
+      alert(`선택하신 [${title}] 코스 상세 화면으로 스크롤합니다!`);
+      document.querySelector('.detail-preview-section').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
